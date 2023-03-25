@@ -56,7 +56,7 @@ app_license = "MIT"
 # Installation
 # ------------
 
-# before_install = "quota_module_client.install.before_install"
+before_install = "quota_module_client.install.before_install"
 # after_install = "quota_module_client.install.after_install"
 
 # Uninstallation
