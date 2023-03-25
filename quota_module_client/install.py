@@ -58,10 +58,11 @@ def before_install():
     used_db_space = frappe.db.sql(
         '''SELECT `table_schema` as `database_name`, SUM(`data_length` + `index_length`) / 1024 / 1024 AS `database_size` FROM information_schema.tables  GROUP BY `table_schema`''')[1][1]
     used_db_space = int(used_db_space)
-
+    total_company = len(frappe.db.get_all('Company', filters={}))
+    
     # Updating Data
     frappe.db.sql(
-        f"""INSERT INTO `tabQ M` VALUES (1, 5, {active_users}, 0, {total_size}, {private_files_size}, {public_files_size}, {backup_files_size}, 0, {used_db_space}, 2, 1, 0, 0, '{valid_till}')""")
+        f"""INSERT INTO `tabQ M` VALUES (1, 5, {active_users}, 0, {total_size}, {private_files_size}, {public_files_size}, {backup_files_size}, 0, {used_db_space}, 5, {total_company}, 0, 0, '{valid_till}')""")
 
 
 # Directory Size
