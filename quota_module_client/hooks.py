@@ -97,13 +97,22 @@ on_login = 'quota_module_client.events.auth.successful_login'
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	'*': {
+        'on_submit': 'quota_module_client.quota.db_space_limit'
+    },
+    'User': {
+        'validate': 'quota_module_client.quota.user_limit',
+        'on_update': 'quota_module_client.quota.user_limit',
+    },
+    'Company': {
+        'validate': 'quota_module_client.quota.company_limit',
+        'on_update': 'quota_module_client.quota.company_limit'
+    },
+    'File': {
+        'validate': 'quota_module_client.quota.files_space_limit'
+    }
+}
 
 # Scheduled Tasks
 # ---------------
