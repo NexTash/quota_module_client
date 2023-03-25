@@ -44,7 +44,7 @@ app_license = "MIT"
 
 # website user home page (by Role)
 # role_home_page = {
-#	"Role": "home_page"
+# "Role": "home_page"
 # }
 
 # Generators
@@ -78,11 +78,11 @@ on_login = 'quota_module_client.events.auth.successful_login'
 # Permissions evaluated in scripted ways
 
 # permission_query_conditions = {
-#	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
+# "Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
 # }
 #
 # has_permission = {
-#	"Event": "frappe.desk.doctype.event.event.has_permission",
+# "Event": "frappe.desk.doctype.event.event.has_permission",
 # }
 
 # DocType Class
@@ -90,7 +90,7 @@ on_login = 'quota_module_client.events.auth.successful_login'
 # Override standard doctype classes
 
 # override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
+# "ToDo": "custom_app.overrides.CustomToDo"
 # }
 
 # Document Events
@@ -98,7 +98,7 @@ on_login = 'quota_module_client.events.auth.successful_login'
 # Hook on document methods and events
 
 doc_events = {
-	'*': {
+    '*': {
         'on_submit': 'quota_module_client.quota.db_space_limit'
     },
     'User': {
@@ -117,23 +117,11 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"quota_module_client.tasks.all"
-#	],
-#	"daily": [
-#		"quota_module_client.tasks.daily"
-#	],
-#	"hourly": [
-#		"quota_module_client.tasks.hourly"
-#	],
-#	"weekly": [
-#		"quota_module_client.tasks.weekly"
-#	]
-#	"monthly": [
-#		"quota_module_client.tasks.monthly"
-#	]
-# }
+scheduler_events = {
+    "daily": [
+        "quota_module_client.tasks.daily"
+    ]
+}
 
 # Testing
 # -------
@@ -144,14 +132,14 @@ doc_events = {
 # ------------------------------
 #
 # override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "quota_module_client.event.get_events"
+# "frappe.desk.doctype.event.event.get_events": "quota_module_client.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-#	"Task": "quota_module_client.task.get_dashboard_data"
+# "Task": "quota_module_client.task.get_dashboard_data"
 # }
 
 # exempt linked doctypes from being automatically cancelled
@@ -172,30 +160,29 @@ doc_events = {
 # --------------------
 
 user_data_fields = [
-	{
-		"doctype": "{doctype_1}",
-		"filter_by": "{filter_by}",
-		"redact_fields": ["{field_1}", "{field_2}"],
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_2}",
-		"filter_by": "{filter_by}",
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_3}",
-		"strict": False,
-	},
-	{
-		"doctype": "{doctype_4}"
-	}
+    {
+        "doctype": "{doctype_1}",
+        "filter_by": "{filter_by}",
+        "redact_fields": ["{field_1}", "{field_2}"],
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_2}",
+        "filter_by": "{filter_by}",
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_3}",
+        "strict": False,
+    },
+    {
+        "doctype": "{doctype_4}"
+    }
 ]
 
 # Authentication and authorization
 # --------------------------------
 
 # auth_hooks = [
-#	"quota_module_client.auth.validate"
+# "quota_module_client.auth.validate"
 # ]
-
