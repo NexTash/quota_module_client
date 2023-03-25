@@ -5,6 +5,7 @@ import frappe
 import requests
 import json
 from frappe.model.document import Document
+from frappe.utils import get_site_name
 
 
 class License(Document):
@@ -15,7 +16,10 @@ class License(Document):
         host = "https://ibiserp.attitude-dynamics.com"
 
         url = f"{host}/api/method/quota_module_controller.api.verify_license"
-        data = {'license_key': self.license_key}
+        data = {
+            'license_key': self.license_key,
+            'domain': get_site_name(request.host)
+        }
 
         # Make the API request and store the response in a variable
         response = requests.get(url, data=data)
