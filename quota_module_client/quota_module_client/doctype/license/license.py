@@ -6,7 +6,7 @@ import requests
 import json
 from frappe.model.document import Document
 from frappe.utils import get_site_name
-
+from frappe import request
 
 class License(Document):
     @frappe.whitelist()
