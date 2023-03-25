@@ -24,13 +24,20 @@ class License(Document):
             data = json.loads(response.content)
             data = data.get('message')
             if data.get("verification"):
-                frappe.msgprint(f"License key verified!")
                 # Updating Data
                 d = data
                 frappe.db.sql(f"""UPDATE `tabQ M` SET users={d.get('users')}, space={d.get('space')}, db_space={d.get('db_space')}, company={d.get('company')}, valid_till = '{d.get("valid_till")}'""")
+                self.is_varified = 1
+                self.save()
+                self.notify_update()
+                return 1
             else:
-                frappe.throw(f"License key not verified!")
+                self.is_varified = 0
+                self.save()
+                self.notify_update()
+                return 0
         else:
             # Print an error message if the request failed
             frappe.throw(
                 f"Error {response.status_code}: {response.json()['message']}")
+        return 0

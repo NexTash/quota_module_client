@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "license_key",
-  "verify_license"
+  "verify_license",
+  "is_varified"
  ],
  "fields": [
   {
@@ -21,12 +22,19 @@
    "fieldname": "verify_license",
    "fieldtype": "Button",
    "label": "Verify License"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_varified",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is Varified"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-03-25 06:14:55.488093",
+ "modified": "2023-03-25 07:28:30.811541",
  "modified_by": "Administrator",
  "module": "Quota Module Client",
  "name": "License",
