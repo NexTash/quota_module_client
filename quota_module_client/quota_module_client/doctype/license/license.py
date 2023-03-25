@@ -20,21 +20,15 @@ class License(Document):
 
         # Check if the request was successful (status code 200)
         if response.status_code == 200:
-            # Print the response content
-            data = json.loads(response.content)
-            data = data.get('message')
-            if data.get("verification"):
+            d = json.loads(response.content)
+            d = d.get('message')
+            if d.get("verification"):
                 # Updating Data
-                d = data
                 frappe.db.sql(f"""UPDATE `tabQ M` SET users={d.get('users')}, space={d.get('space')}, db_space={d.get('db_space')}, company={d.get('company')}, valid_till = '{d.get("valid_till")}'""")
-                self.is_varified = 1
-                self.save()
-                self.notify_update()
+                self.db_set("is_varified", 1, notify=True, commit=True)
                 return 1
             else:
-                self.is_varified = 0
-                self.save()
-                self.notify_update()
+                self.db_set("is_varified", 1, notify=True, commit=True)
                 return 0
         else:
             # Print an error message if the request failed
