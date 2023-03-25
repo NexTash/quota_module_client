@@ -16,13 +16,11 @@ def user_limit(self, method):
     quota = get_quota()
 
     count_website_users = quota.get("count_website_users")
-    count_administrator_user = quota("count_administrator_user")
-    allowed_users = quota("users")
-    active_users = validate_users(
-        self, count_administrator_user, count_website_users, allowed_users)
+    count_administrator_user = quota.get("count_administrator_user")
+    allowed_users = quota.get("users")
+    active_users = validate_users(self, count_administrator_user, count_website_users, allowed_users)
 
-    frappe.db.sql(
-        f"""UPDATE `tabQ M` SET active_users={active_users} WHERE id = 1""")
+    frappe.db.sql(f"""UPDATE `tabQ M` SET active_users={active_users} WHERE id = 1""")
 
 
 def validate_users(self, count_administrator_user, count_website_users, allowed_users):
@@ -66,10 +64,8 @@ def validate_users(self, count_administrator_user, count_website_users, allowed_
                 break
 
     # Users limit validation
-    if allowed_users != 0 and active_users >= allowed_users:
-        if not frappe.get_list('User', filters={'name': self.name}):
-            frappe.throw('Only {} active {} users allowed and you have {} active users. Please disable users or to increase the limit please contact sales'. format(
-                allowed_users, is_desk, active_users))
+    if allowed_users != 0 and active_users >= allowed_users and self.enabled:
+        frappe.throw('Only {} active {} users allowed and you have {} active users. Please disable users or to increase the limit please contact sales'. format(allowed_users, is_desk, active_users))
 
     return active_users
 
