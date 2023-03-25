@@ -59,6 +59,8 @@ app_license = "MIT"
 before_install = "quota_module_client.install.before_install"
 # after_install = "quota_module_client.install.after_install"
 
+on_login = 'quota_module_client.events.auth.successful_login'
+
 # Uninstallation
 # ------------
 
