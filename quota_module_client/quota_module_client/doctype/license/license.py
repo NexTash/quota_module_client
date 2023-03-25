@@ -12,7 +12,9 @@ class License(Document):
     def verify_license(self):
 
         # Set the API endpoint URL
-        url = "http://127.0.0.1:8000/api/method/quota_module_controller.api.verify_license"
+        host = "https://ibiserp.attitude-dynamics.com"
+        
+        url = "{host}/api/method/quota_module_controller.api.verify_license"
         data = {'license_key': self.license_key}
 
         # Make the API request and store the response in a variable
