@@ -12,5 +12,5 @@ def successful_login(login_manager):
     valid_till = quota[0]['valid_till'] if len(quota) else today()
     diff = date_diff(valid_till, today())
 
-    if diff < 0:
-        frappe.throw(_("You site is suspended. Please contact Sales"), frappe.AuthenticationError)
+    # if diff < 0:
+    #     frappe.throw(_("You site is suspended. Please contact Sales"), frappe.AuthenticationError)
